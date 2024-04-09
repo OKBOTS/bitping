@@ -5,22 +5,24 @@ FROM debian:stable-slim
 ENV DEBIAN_FRONTEND=noninteractive \
     PATH="/root/.local/bin:${PATH}" \
     NODE_DB_PATH="/root/.bitpingd/node.db" \
-    BITPING_EMAIL="" \
-    BITPING_PASSWD=""
+    BITPING_EMAIL="lykcloud@proton.me" \
+    BITPING_PASSWD="L@bin123"
 
 # Install necessary packages then clean up to reduce image size
-RUN apt update && \
-    apt upgrade -y && \
-    apt install -qqy \
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -qqy \
     bash \
     tini \
     supervisor \
     curl \
     wget \
     unzip \
-    expect && \
-    apt autoremove --purge -y && \
-    apt clean && \
+    expect \
+    python3 \
+    python3-pip && \
+    apt-get autoremove --purge -y && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Set up working directory
