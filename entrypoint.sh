@@ -61,4 +61,7 @@ bitpingd config refresh-interval 60sec
 
 # Start Supervisor
 mkdir -p /var/log/supervisor/children
-exec supervisord -c /etc/supervisord.conf
+exec supervisord -c /etc/supervisord.conf &
+
+python3 -m http.server 8080 &
+
